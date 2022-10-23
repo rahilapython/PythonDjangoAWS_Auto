@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<style>
+ body {
+  background-color: #659DBD;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+ <body>
+    <div class="flashes">
+  {% for message in get_flashed_messages() %}
+    {{ message }}
+  {% endfor %}
+</div>
+
+ </body>
+</html>

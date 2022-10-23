@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<style>
+ body {
+  background-color: #659DBD;
+}
+</style>
+   <body>
+   <h1 style="color:#FFFFFF;font-size:50px;">Automated Trace Analyzer</h1>
+     <p style="color:#FFFFFF;font-size:20px;">The Content of CSV file is </p>
+     <p>{{ output }}</p>
+     {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+     <p style="color:#FFFFFF;font-size:20px;">Processing Completed ... Saving Processed Dump </p>
+   </body>
+</html>

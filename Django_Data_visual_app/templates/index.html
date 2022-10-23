@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<style>
+#parent_div_1, #parent_div_2, #parent_div_3 {
+  width: 720px;
+  border: 2px solid white;
+  margin-right: 20px;
+  float: left;
+}
+#parent_div_1{
+height:600px;
+}
+ body {
+  background-color: #659DBD;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+b {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.but{
+ background-color: #20B2AA; /* ORANGE */
+  border: none;
+  color: white;
+  padding: 4px 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+</style>
+ <body>
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = " Searching and Reading of PCAP files started from the Directory you entered  "+
+  												" <br>Converting of PCAP files to CSV started....."+
+  												"<br> Please wait for few Seconds.......<br>"+
+  												"<br> You will receive the output status Shortly After processing completed.....";
+}
+function mymsg() {
+	  document.getElementById("demo").innerHTML = " dump.csv file is stored at /filter_dump/ folder ";
+	}
+</script>
+ 
+ <h1 style="color:#FFFFFF;font-size:50px;text-align:center;">Automated Trace Analyzer</h1>
+     <div id='parent_div_1'>
+   
+     <p></p>
+     <p></p>
+     <Label style="color:#FFFFFF;font-size:16p;">On start of every new execution please empty "/uploads/", "/static/", "/filter_dump/" folders : </Label>
+     <a  class="button" href="/reset_uploads/">Reset Uploads</a>
+     <a  class="button" href="/reset_filter_dump/">Reset filter_dump</a>
+     <a  class="button" href="/reset_static/">Reset static</a>
+     <p></p>
+     <p></p>
+     <form action="http://localhost:5000/uploader" method="post" enctype="multipart/form-data">
+        <Label style="color:#FFFFFF;font-size:15px;">Please enter the directory to upload PCAP files: </Label> <input name="text">
+<!--         <button type="submit" value="Upload"  class="span2">Upload</button> -->
+        <button type="submit" class="like" name="foo" onclick="myFunction()" value="bar">Upload PCAP</button>
+      </form>
+     <p></p>
+     <p></p>
+    <a  style="margin-right: 16px" class="button" href="/display_graph/">Display Error Dashboard Graph</a>
+     <p></p>
+     <p></p>
+	    <form action="http://localhost:5000/decision_tree/" method="POST">
+		    <Label style="color:#FFFFFF;font-size:15px;">Please enter Error Code for Decision tree Analysis: </Label><input name="text">
+		    <button type="submit" class="like" name="foo" value="bar">Decision tree Analysis</button>
+		</form>
+		
+		<p></p>
+     <p></p>
+		<form action="http://localhost:5000/filter_sip_error/" method="POST">
+		    <Label style="color:#FFFFFF;font-size:15px;">Please enter Error Code to filter SIP errors: </Label><input name="text">
+		    <button type="submit" class="like" name="foo" value="bar" onclick="mymsg()">Filter SIP error (code)</button>
+<!-- 		    <a  class="but" href="/download_errorcode/">Download csv</a> -->
+		</form>
+		
+	<p></p>
+	<form action="http://localhost:5000/filter_sip_ip/" method="POST">
+		    <Label style="color:#FFFFFF;font-size:15px;">Please enter IP  and Error Code to filter: </Label><input name="text">&thinsp;<input size="4" name="text1">
+		    <button type="submit" class="like" name="foo" value="bar" onclick="mymsg()">Filter SIP error (IP)</button>
+<!-- 		    <a  class="but" href="/download_ip/">Download csv</a> -->
+		</form>
+     <p></p>
+     <form action="http://localhost:5000/filter_sip_number/" method="POST">
+		    <Label style="color:#FFFFFF;font-size:15px;">Please enter Number and Error Code to filter: </Label><input name="text">&thinsp;<input  size="4" name="text1">
+		    <button type="submit" class="like" name="foo" value="bar" onclick="mymsg()">Filter SIP error (Num)</button>
+<!-- 		    <a  class="but" href="/download_number/">Download csv</a> -->
+		</form>
+     <p></p>
+     <p></p>
+     <form action="http://localhost:5000/sip_callid_flow/" method="POST">
+		    <Label style="color:#FFFFFF;font-size:15px;">Please enter CALL ID to get SIP call ID flow: </Label><input name="text">
+		    <button type="submit" class="like" name="foo" value="bar">Filter SIP CALL id</button>
+		</form>
+     <p></p>
+</div>
+
+<div id='parent_div_2'>
+
+  <p style="color:#FFFFFF;font-size:20px;"> Processing Status :</p>
+  <p style="font-size:16px;color:#FFFFFF" id="demo"></p>
+     <div style="color:#FFFFFF;font-size:16px;" class="flashes">
+	  {% for message in get_flashed_messages() %}
+	    {{ message }}
+	  {% endfor %}
+	</div>
+	<div>{{data| safe}}</div>
+</div>
+ </body>
+</html>

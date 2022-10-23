@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+<style>
+img {
+  width: 850px;
+  height: 380px;
+}
+</style>
+</head>
+<body>
+    <img src="{{ user_image }}" alt="User Image">
+    <p><div style="color:#FFFFFF;font-size:20px;" class="flashes">
+	  {% for message in get_flashed_messages() %}
+	    {{ message }}
+	  {% endfor %}
+	</div></p>
+	<div>{{data| safe}}</div>
+</body>
+</html>

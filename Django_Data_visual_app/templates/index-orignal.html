@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<style>
+ body {
+  background-color: #659DBD;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+</style>
+ <body>
+     <h1 style="color:#FFFFFF;font-size:50px;text-align:center;">Automated Trace Analyzer</h1>
+     <p></p>
+     <p></p>
+     <Label style="color:#FFFFFF;font-size:15px;"> NOTE: On Every Execution Please make sure that "/uploads/" folder is Empty</Label>
+     <p></p>
+     <p></p>
+     <form action="http://localhost:5000/uploader" method="post" enctype="multipart/form-data">
+        <Label style="color:#FFFFFF;font-size:15px;">Please Upload the file (single/Multiple): </Label> <input type="file" multiple="" name="file[]" class="span3" />
+        <button type="submit" value="Upload"  class="span2">Upload</button>
+      </form>
+     <p></p>
+     <p></p>
+     <Label style="color:#FFFFFF;font-size:15px;">Wait for few seconds after clicking this : </Label><a class="button" href="/my-link/">Convert Pcap to CSV</a>
+     <p></p>
+     <p></p>
+     <a  style="margin-right: 16px" class="button" href="/graph/">Create Dashboard Graph</a> <a  style="margin-right: 16px" class="button" href="/display_graph/">Display Dashboard Graph</a>
+     <p></p>
+     <p></p>
+	    <form action="http://localhost:5000/decision_tree/" method="POST">
+		    <Label style="color:#FFFFFF;font-size:15px;">Please enter Error Code for Decision tree Analysis: </Label><input name="text">
+		    <button type="submit" class="like" name="foo" value="bar">Decision tree Analysis</button>
+		</form>
+		<p></p>
+     <p></p>
+		<form action="http://localhost:5000/filter_sip_error/" method="POST">
+		    <Label style="color:#FFFFFF;font-size:15px;">Please enter Error Code to filter SIP errors: </Label><input name="text">
+		    <button type="submit" class="like" name="foo" value="bar">Filter SIP error (code)</button>
+		</form>
+	<p></p>
+	<form action="http://localhost:5000/filter_sip_ip/" method="POST">
+		    <Label style="color:#FFFFFF;font-size:15px;">Please enter IP to filter SIP errors: </Label><input name="text">
+		    <button type="submit" class="like" name="foo" value="bar">Filter SIP error (IP)</button>
+		</form>
+     <p></p>
+     <form action="http://localhost:5000/filter_sip_number/" method="POST">
+		    <Label style="color:#FFFFFF;font-size:15px;">Please enter Number to filter SIP errors: </Label><input name="text">
+		    <button type="submit" class="like" name="foo" value="bar">Filter SIP error (Number)</button>
+		</form>
+     <p></p>
+     <p style="color:#FFFFFF;font-size:20px;"> Processing Status :</p>
+     <div class="flashes">
+	  {% for message in get_flashed_messages() %}
+	    {{ message }}
+	  {% endfor %}
+	</div>
+	{% for table in data %}
+            {{ table|safe }}
+	{% endfor %}
+ </body>
+</html>
